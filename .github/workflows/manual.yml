@@ -1,0 +1,25 @@
+pipeline
+agent any
+{
+  stages
+  {
+    stage('scm checkout')
+    {
+    steps (git branch:'main',url:'https://github.com/ztka0054/machinetest.git' )
+    }
+     stage('code compile')
+     {
+     steps (sh 'mvn compile' )
+     }
+     stage ('code testing')
+     {
+     steps (sh 'mvn test' )
+     }
+     stage ('code built')
+     {
+     steps (sh 'mvn package')
+     }
+     stage ('code deploy to server or ks8')
+     {
+     steps ('scp -o <path >')
+     }}}
